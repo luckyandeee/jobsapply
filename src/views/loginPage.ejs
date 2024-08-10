@@ -1,0 +1,71 @@
+<!-- Main Container for Login and Register -->
+<div class="container mt-5" style="height: 75vh;">
+    <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">
+                Sign In
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">
+                Sign Up
+            </a>
+        </li>
+    </ul>
+
+    <!-- Tabs Content -->
+    <div class="tab-content container" id="myTabContent" style="width: 100%;min-width: 250px;max-width: 350px;">
+        <!-- Login Tab -->
+        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <div id="loginAlert" class="alert alert-danger d-none" role="alert"></div>
+            <form id="loginForm" action="/login" method="post">
+                <!-- Username input -->
+                <div class="mb-3">
+                    <label class="form-label" for="loginName">Username</label>
+                    <input type="text" id="loginName" class="form-control" name="username" required />
+                </div>
+
+                <!-- Password input -->
+                <div class="mb-3">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" name="password" required />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+
+                <!-- Success and Error Messages -->
+                <div id="success-message" class="alert alert-success mt-3 d-none"></div>
+                <div id="error-message" class="alert alert-danger mt-3 d-none"></div>
+            </form>
+        </div>
+
+        <!-- Register Tab -->
+        <div class="tab-pane fade " id="register" role="tabpanel" aria-labelledby="register-tab">
+            <div id="registerAlert" class="alert alert-danger d-none" role="alert"></div>
+            <form id="registerForm" action="/register" method="post">
+                <!-- Username input -->
+                <div class="mb-3">
+                    <label class="form-label" for="registerName">Username</label>
+                    <input type="text" id="registerName" class="form-control" name="username" required />
+                </div>
+
+                <!-- Email input -->
+                <div class="mb-3">
+                    <label class="form-label" for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" name="email" required />
+                </div>
+
+                <!-- Password input -->
+                <div class="mb-3">
+                    <label class="form-label" for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" name="password" required />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

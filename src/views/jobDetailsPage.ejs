@@ -1,0 +1,161 @@
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center w-100 my-2" style="height: 100vh;">
+  <div id="success-message" class="alert alert-success px-5" role="alert" style="display: none;">Applied Successfully !</div>
+  <div class="lead text-success text-center w-75 fs-1">
+      <span class="text-danger fw-bold"><%= job.jobdesignation %></span> opportunity in <b><%= job.joblocation %></b> at 
+  </div>
+  <div class="display-4 w-100 text-center border-top text-primary">
+      <%= job.companyname %>
+  </div>
+
+  
+  <div class="lead w-50 fs-4 d-flex align-items-center justify-content-end">
+      <%= job.jobcategory %> - <span class="display-6 text-danger"><%= job.jobdesignation %></span>
+  </div>
+  <% if (locals.userEmail) { %>
+    <ul class="nav" >
+      <li class="nav-item">
+        <a  class="nav-link text-danger bg-light rounded-pill px-3 py-2 shadow-sm" role="button" data-bs-toggle="modal" data-bs-target="#updateJobModal">
+          <i class="fa fa-edit"></i>
+        </a>
+      </li>
+      <li class="nav-item ms-3">
+        <a class="nav-link text-danger bg-light rounded-pill px-3 py-2 shadow-sm" href="/delete-job/<%=job.id%>" title="Delete Job">
+          <i class="fa fa-trash"></i>
+        </a>
+      </li>
+    </ul>
+    <% } %>
+  <ul class="list-group list-group-flush text-start ">
+      <li class="list-group-item"><i class="fa fa-map-marker m-3"></i><%= job.joblocation %></li>
+      <li class="list-group-item"><i class="fa fa-inr m-3 "></i><%= job.salary %></li>
+      <li class="list-group-item"><i class="fa fa-hourglass-end m-3"></i>Apply By <%= job.applyby %></li>
+      <li class="list-group-item"><i class="fa fa-user-plus m-3"></i>Number of openings <%= job.numberofopenings %></li>
+      <% if (locals.userEmail) { %>
+        <li class="list-group-item text-danger"><a href="<%= job.id %>/applicants" class="text-decoration-none text-danger"><i class="fa fa-users m-3"></i>Applicants <%= job.applicants.length %></a></li>
+        <% } %>
+     
+  </ul>
+
+ 
+
+  <a  class="btn btn-primary active m-3 p-2 w-50 fs-4 lead" role="button" data-bs-toggle="modal" data-bs-target="#applyJobModal">Apply Now</a>
+
+  <!-- apply Modal -->
+  <div class="modal fade" id="applyJobModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="applyModalLabel">Apply for Job</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="error-message" class="alert alert-danger px-5" role="alert" style="display: none;"></div>
+
+              <div class="modal-body p-5">
+              
+                  <form id='jobApplyForm'action="<%= job.id %>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="jobid" value="<%= job.id %>">
+                      <div class="form-group my-3 border-bottom border-dark border-3">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" >
+                      </div>
+                      <div class="form-group my-3 border-bottom border-dark border-3">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" >
+                      </div>
+                      <div class="form-group my-3 border-bottom border-dark border-3">
+                        <label for="contact">Contact Number</label>
+                        <input type="tel" class="form-control" id="contact" name="contact" placeholder="Enter your contact number" >
+                      </div>
+                      <div class="form-group my-3 border-bottom border-dark border-3 ">
+                        <label for="resume">Upload Resume (PDF)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="resume" name="resume" accept="application/pdf" >
+                          <label class="custom-file-label" for="resume"></label>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-block my-3 w-100 text-center">Submit Application</button>
+                    </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- job update modal -->
+   <!-- Modal -->
+  <div class="modal fade" id="updateJobModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applyModalLabel">Update Job Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="error-message" class="alert alert-danger px-5" role="alert" style="display: none;"></div>
+
+            <div class="modal-body p-5">
+            
+              <form action="/updatejob/<%=job.id%>" method="post">
+   
+                <input type="hidden" name="postedBy" value="<%= locals.userEmail %>">
+                <div class="mb-3">
+                  <label for="jobCategory" class="form-label">Job Category</label>
+                  <input type="text" class="form-control" id="jobCategory" name="jobcategory" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobDesignation" class="form-label">Job Designation</label>
+                  <input type="text" class="form-control" id="jobDesignation" name="jobdesignation" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobLocation" class="form-label">Job Location</label>
+                  <input type="text" class="form-control" id="jobLocation" name="joblocation" required>
+                </div>
+                <div class="mb-3">
+                  <label for="companyName" class="form-label">Company Name</label>
+                  <input type="text" class="form-control" id="companyName" name="companyname" required>
+                </div>
+                <div class="mb-3">
+                  <label for="salary" class="form-label">Salary</label>
+                  <input type="number" class="form-control" id="salary" name="salary" required>
+                </div>
+                <div class="mb-3">
+                  <label for="applyBy" class="form-label">Apply By</label>
+                  <input type="date" class="form-control" id="applyBy" name="applyby" required>
+                </div>
+                <div class="mb-3"> 
+                  <label for="skillsRequired" class="form-label">Skills Required</label>
+                  <input type="text" class="form-control" id="skillsRequired" name="skillsrequired" placeholder="Separate skills with commas" required>
+                </div>
+                <div class="mb-3">
+                  <label for="numberOfOpenings" class="form-label">Number of Openings</label>
+                  <input type="number" class="form-control" id="numberOfOpenings" name="numberofopenings" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 my-4">Update Job</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+  document.getElementById('jobApplyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch(this.action, {
+      method: 'POST',
+      // Do not set 'Content-Type' header manually here
+      body: formData,  // Send FormData directly
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.success && data.errorMessage) {
+        document.getElementById('error-message').textContent = data.errorMessage;
+        document.getElementById('error-message').style.display = "block";
+      } else {
+        document.getElementById('success-message').textContent = data.Message;
+        document.getElementById('success-message').style.display = "block";
+        $('#applyJobModal').modal('hide');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
+</script>

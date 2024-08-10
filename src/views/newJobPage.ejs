@@ -1,0 +1,45 @@
+<div class="container mt-5" style="width: 100%;min-width: 250px;max-width: 550px;">
+  <% if (errorMessage) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= errorMessage %>
+    </div>
+  <% } %>
+  <h1 class="mb-4">Post New Job</h1>
+  <form action="/postnewjob" method="post">
+   
+    <input type="hidden" name="postedBy" value="<%= locals.userEmail %>">
+    <div class="mb-3">
+      <label for="jobCategory" class="form-label">Job Category</label>
+      <input type="text" class="form-control" id="jobCategory" name="jobcategory" required>
+    </div>
+    <div class="mb-3">
+      <label for="jobDesignation" class="form-label">Job Designation</label>
+      <input type="text" class="form-control" id="jobDesignation" name="jobdesignation" required>
+    </div>
+    <div class="mb-3">
+      <label for="jobLocation" class="form-label">Job Location</label>
+      <input type="text" class="form-control" id="jobLocation" name="joblocation" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyName" class="form-label">Company Name</label>
+      <input type="text" class="form-control" id="companyName" name="companyname" required>
+    </div>
+    <div class="mb-3">
+      <label for="salary" class="form-label">Salary</label>
+      <input type="number" class="form-control" id="salary" name="salary" required>
+    </div>
+    <div class="mb-3">
+      <label for="applyBy" class="form-label">Apply By</label>
+      <input type="date" class="form-control" id="applyBy" name="applyby" required>
+    </div>
+    <div class="mb-3"> 
+      <label for="skillsRequired" class="form-label">Skills Required</label>
+      <input type="text" class="form-control" id="skillsRequired" name="skillsrequired" placeholder="Separate skills with commas" required>
+    </div>
+    <div class="mb-3">
+      <label for="numberOfOpenings" class="form-label">Number of Openings</label>
+      <input type="number" class="form-control" id="numberOfOpenings" name="numberofopenings" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 my-4">Post Job</button>
+  </form>
+</div>
