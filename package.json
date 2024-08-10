@@ -1,9 +1,10 @@
 {
-  "name": "mvc-ecomm",
+  "name": "mvc-job-portal",
   "version": "1.0.0",
-  "description": "MVC model Ecomm site without integreating DataBase.",
+  "description": "An MVC model job portal without integrating a database. Features job listing, user authentication, and email notifications.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
