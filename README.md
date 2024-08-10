@@ -9,7 +9,7 @@ This is a comprehensive job management system built as a web development assignm
 - **Modern User Interface**: Responsive and aesthetically pleasing UI using Bootstrap and custom CSS.
 - **User Authentication**: Secure login and registration with session management.
 - **Job Posting**: Recruiters can post new job listings through an easy-to-use form.
-- **Job Filtering**: Users can search and filter jobs based on various criteria.
+- **Job Filtering**: Filter jobs based on various criteria.
 - **Email Notifications**: Confirmation emails sent to users upon registration and job application.
 
 ## Technologies Used
@@ -41,7 +41,7 @@ This is a comprehensive job management system built as a web development assignm
     npm install
     ```
 
-4. **Create a `.env` file** in the root directory and add your environment variables (e.g., database credentials, email configurations).
+4. **Create a `.env` file** in the root directory and add your environment variables (e.g., database credentials, email configurations).(optional)
 
 5. **Start the server:**
 
@@ -83,7 +83,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or feedback, please reach out to me at [your.email@example.com](mailto:your.email@example.com).
+For any questions or feedback, please reach out to me at [vemurisaisrinivas@gmail.com](mailto:vemurisaisrinivas@gmail.com).
 
 ---
 
